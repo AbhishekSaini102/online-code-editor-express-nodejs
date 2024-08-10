@@ -1,0 +1,198 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online IDE</title>
+</head>
+
+<body>
+    <h1>Online IDE</h1>
+    <form id="codeForm">
+        <textarea id="code" rows="20" cols="80" placeholder="Write your C++ code here..."></textarea><br>
+        <button type="submit">Run Code</button>
+    </form>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent form from submitting the default way
+
+            const code = document.getElementById('code').value;
+            const formData = new FormData();
+            formData.append('file', new Blob([code], { type: 'text/x-cpp' }), 'code.cpp');
+
+            try {
+                const response = await fetch('http://localhost:3000/execute/rust', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById('output').textContent = result.result || result.error;
+            } catch (error) {
+                document.getElementById('output').textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online IDE</title>
+</head>
+
+<body>
+    <h1>Online IDE</h1>
+    <form id="codeForm">
+        <label for="language">Select Language:</label>
+        <select id="language">
+            <option value="cpp">C++</option>
+            <option value="rust">Rust</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+        </select><br><br>
+        <textarea id="code" rows="20" cols="80" placeholder="Write your code here..."></textarea><br>
+        <button type="submit">Run Code</button>
+    </form>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent form from submitting the default way
+
+            const code = document.getElementById('code').value;
+            const language = document.getElementById('language').value;
+            const formData = new FormData();
+            formData.append('file', new Blob([code], { type: getMimeType(language) }), `code.${getFileExtension(language)}`);
+
+            try {
+                const response = await fetch(`http://localhost:3000/execute/${language}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById('output').textContent = result.result || result.error;
+            } catch (error) {
+                document.getElementById('output').textContent = `Error: ${error.message}`;
+            }
+        });
+
+        function getMimeType(language) {
+            switch (language) {
+                case 'cpp':
+                    return 'text/x-c++';
+                case 'rust':
+                    return 'text/x-rust';
+                case 'python':
+                    return 'text/x-python';
+                case 'java':
+                    return 'text/x-java';
+                default:
+                    return 'text/plain';
+            }
+        }
+
+        function getFileExtension(language) {
+            switch (language) {
+                case 'cpp':
+                    return 'cpp';
+                case 'rust':
+                    return 'rs';
+                case 'python':
+                    return 'py';
+                case 'java':
+                    return 'java';
+                default:
+                    return 'txt';
+            }
+        }
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online IDE</title>
+</head>
+<body>
+    <h1>Online IDE</h1>
+    <form id="codeForm">
+        <label for="language">Select Language:</label>
+        <select id="language">
+            <option value="cpp">C++</option>
+            <option value="rust">Rust</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+        </select><br><br>
+        <textarea id="code" rows="20" cols="80" placeholder="Write your code here..."></textarea><br>
+        <button type="submit">Run Code</button>
+    </form>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('codeForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent form from submitting the default way
+
+            const code = document.getElementById('code').value;
+            const language = document.getElementById('language').value;
+            const formData = new FormData();
+            formData.append('file', new Blob([code], { type: getMimeType(language) }), `code.${getFileExtension(language)}`);
+
+            try {
+                const response = await fetch(`http://localhost:3000/execute/${language}`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                document.getElementById('output').textContent = result.result || result.error;
+            } catch (error) {
+                document.getElementById('output').textContent = `Error: ${error.message}`;
+            }
+        });
+
+        function getMimeType(language) {
+            switch (language) {
+                case 'cpp':
+                    return 'text/x-c++';
+                case 'rust':
+                    return 'text/x-rust';
+                case 'python':
+                    return 'text/x-python';
+                case 'java':
+                    return 'text/x-java';
+                default:
+                    return 'text/plain';
+            }
+        }
+
+        function getFileExtension(language) {
+            switch (language) {
+                case 'cpp':
+                    return 'cpp';
+                case 'rust':
+                    return 'rs';
+                case 'python':
+                    return 'py';
+                case 'java':
+                    return 'java';
+                default:
+                    return 'txt';
+            }
+        }
+    </script>
+</body> 
+</html>
